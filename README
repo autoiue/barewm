@@ -54,6 +54,12 @@ TODO
 
 NEWS:
 
+3/11/09    - Honor DISPLAY variable
+           - Add sample short-info.sh
+           - Add uninstall
+
+OLDS:
+
 29.04.2009 - Added a status feature (outputs the result from the command defined at STATUS)
            - Added options for custom cursors (only ones found in X11/cursorfont.h)
 15.10.2009 - Wrote timeout handler, so it doesn't block when messages are displayed
