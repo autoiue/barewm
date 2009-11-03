@@ -546,7 +546,7 @@ void main_loop(void)
 
 int main(int argc, char *argv[])
 {
-	if(!(display = XOpenDisplay(DISPLAY))){
+	if(!(display = XOpenDisplay(getenv(DISPLAY)))){
 		LOG("BARE: cannot open display! Ending session.\n");
 		return -1;
 	}
