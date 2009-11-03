@@ -7,3 +7,5 @@ install: barewm
 	install -sD barewm $(DESTDIR)$(PREFIX)/bin/barewm
 clean:
 	rm -f barewm
+uninstall:
+	rm -f $(PREFIX)/bin/barewm
