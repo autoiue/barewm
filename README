@@ -15,6 +15,8 @@ INSTALL
 
 open conf.h
 < edit settings / keys / colors >
+(optional) open short-info.sh
+< edit / add commands, `chmod +x` it, put somewhere in $PATH >
 $ make
 $ sudo make install
 
@@ -26,17 +28,6 @@ xinitrc example:
 exec xsetroot -solid "Gray50" &
 exec barewm
 $ startx
-
-example short-info.sh - create this, make it executable (chmod +x) and put it somewhere in your search path
--- cut here --
-#!/bin/sh
-TEMP=$(cat /proc/acpi/thermal_zone/THRM/temperature | awk '{print $2"C"}')
-FREQ=$(cpufreq-info | awk '/current CPU frequency/ {print $5"MHz"}')
-DATE=$(echo -n $(date +%B,\ %d\ -\ %I:%M\ %p))
-SDA2=$(df -h | awk '/sda2/ {print $4"/"$2}')
-INFO=$(echo -n "Storage: $SDA2 :: CPUFreq: $FREQ :: Temperature $TEMP :: $DATE")
-echo -n "$INFO"
--- cut here --
 
 USAGE
 Configuration is done by modifying the conf.h file and recompiling.
