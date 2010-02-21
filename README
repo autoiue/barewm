@@ -18,8 +18,11 @@ SHOUTS:
 INSTALL:
 open conf.h
 < edit settings / keys / colors >
+NOTE: Valid cursor names in "/usr/include/X11/cursorfont.h", or anywhere you can find them on the internet. Defaults should be fine though.
+
 (optional) open short-info.sh
 < edit / add commands, `chmod +x` it, put somewhere in $PATH >
+
 $ make
 $ sudo make install
 

@@ -14,15 +14,15 @@
 #include <signal.h>
 #include <stdbool.h>
 
-/* stuff for c99 compatibility */
+// Stuff for c99 compatibility.
 extern FILE *popen (__const char *__command, __const char *__modes) __wur;
 extern int pclose (FILE *__stream);
 #define WAIT_ANY (-1)
 
-/*define this only when playing with the source */
+// Define this only when playing with the source.
 #define DEBUG 0
 
-/* globals */
+// Globals.
 Display 		*display;
 Window 			root;
 Screen 			*screen;
@@ -485,14 +485,14 @@ void handle_configure_event(XEvent *e)
 
 void handle_expose_event(XEvent *e)
 {
-	// Redraw stuff in here...window title etc
-	// Not handled yet but I'ma add it here for future dev
+	// Redraw stuff in here...window title etc.
+	// Not handled yet but added here for future dev.
 }
 
 void handle_property_event(XEvent *e)
 {
-	// In case properties like name etc change ... handle them in here
-	// Not handled yet but I'ma add it here for future dev
+	// In case properties like name change... handle them in here.
+	// Not handled yet but added here for future dev.
 }
 
 int handle_x_error(Display *display, XErrorEvent *e)
@@ -506,7 +506,7 @@ int handle_x_error(Display *display, XErrorEvent *e)
 void main_loop(void)
 {
 	XEvent event;
-	XSetErrorHandler(handle_x_error); //Ignore X errors otherwise the WM would crash every other minute :)
+	XSetErrorHandler(handle_x_error); //Ignore X errors otherwise the WM would crash every other minute. :)
 	while(1){
        		XNextEvent(display, &event);
        		switch(event.type){
@@ -517,7 +517,7 @@ void main_loop(void)
             }
 			if ((XKeycodeToKeysym(display, event.xkey.keycode, 0) == KEY_PREFIX) && (event.xkey.state & MOD_MASK))
 			{       
-				LOG_DEBUG("Switching to command mode\n");
+				LOG_DEBUG("Switching to command mode.\n");
 				XDefineCursor(display, root, (XCreateFontCursor(display, CMD_CURSOR)));
 				handle_keypress_event(&event);
 			}
@@ -538,7 +538,7 @@ void main_loop(void)
 			handle_property_event(&event);
 			break;
 		default:
-			LOG_DEBUG("Received an unhandled event:  %d\n", event.type);
+			LOG_DEBUG("Received an unhandled event: %d\n", event.type);
 			break;
 			}
 	}
@@ -547,7 +547,7 @@ void main_loop(void)
 int main(int argc, char *argv[])
 {
 	if(!(display = XOpenDisplay(getenv(DISPLAY)))){
-		LOG("BARE: cannot open display! Ending session.\n");
+		LOG("BARE: Cannot open display! Ending session.\n");
 		return -1;
 	}
 	if((root = DefaultRootWindow(display)))
@@ -555,7 +555,7 @@ int main(int argc, char *argv[])
 		XSetWindowBackground(display, root, BlackPixel(display, XDefaultScreen(display)));
 		XClearWindow(display, root);
 	} else {
-		LOG("BARE: cannot get root window! Ending session.\n");
+		LOG("BARE: Cannot get root window! Ending session.\n");
 		return -1;
 	}
 	if((screen = DefaultScreenOfDisplay(display)))
@@ -564,13 +564,13 @@ int main(int argc, char *argv[])
 		SCREEN_HEIGHT 	= XHeightOfScreen(screen);
 		LOG("Screen: %d x %d\n", SCREEN_WIDTH, SCREEN_HEIGHT);
 	} else {
-		LOG("BARE: cannot get screen! Ending session.\n");
+		LOG("BARE: Cannot get screen! Ending session.\n");
 		return -1;	
 	}
 	selected = root;
 	fontstruct = XLoadQueryFont(display, FONT);
 	if (!fontstruct) {
-		LOG("Couldn't find font \"%s\", loading default\n", FONT);
+		LOG("Couldn't find font \"%s\", loading default.\n", FONT);
 		fontstruct = XLoadQueryFont(display, "-*-fixed-medium-r-*-*-12-*-*-*-*-*-iso8859-1");
 		if (!fontstruct) {
 			LOG("Couldn't load default fixed font. Something is seriouslly wrong. Ending session.\n");
