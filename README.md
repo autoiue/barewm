@@ -59,15 +59,19 @@ More as I think of them.
 
 ## Changelog
 
-11.3.2009  - Honor DISPLAY variable
+11.3.2009
+           - Honor DISPLAY variable
            - Add sample short-info.sh
            - Add `make uninstall`
            - Other stuff
-29.04.2009 - Added a status feature (outputs the result from the command defined at STATUS)
+29.04.2009
+           - Added a status feature (outputs the result from the command defined at STATUS)
            - Added options for custom cursors (only ones found in X11/cursorfont.h)
-15.10.2009 - Wrote timeout handler, so it doesn't block when messages are displayed
+15.10.2009
+           - Wrote timeout handler, so it doesn't block when messages are displayed
            - Started doing a complete clean-up of the code, especially the color handling
-16.10.2009 - Implemented most of meth0dz' suggestions and code
+16.10.2009
+           - Implemented most of meth0dz' suggestions and code
            - Killing windows now selects the previous (or next, depending on the outcome
              of the previous selection) window
            - Added meth0dz's suggestion, switched to C99, thus having to mess a bit with the
