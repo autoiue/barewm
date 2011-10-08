@@ -19,6 +19,10 @@ extern FILE *popen (__const char *__command, __const char *__modes) __wur;
 extern int pclose (FILE *__stream);
 #define WAIT_ANY (-1)
 
+// helper functions
+#define max(a,b) (a >= b ? a : b)
+#define min(a,b) (a <= b ? a : b)
+
 // Define this only when playing with the source.
 #define DEBUG 0
 
@@ -145,15 +149,38 @@ void init_gc(void)
 int get_window(bool nex_prev)
 {
         int x = get_position(selected);
-        nex_prev ? x++ :  x--;
+		int start_x = x;
+		
+		if (nex_prev) {
+				x++;
+				
+		  		x = min(x, max_windows) % max_windows;
+		} else {
+				x--;
+
+				x = (x+max_windows) % max_windows; //(max(x, 0) + max_windows) % max_windows;
+		}
+
         while ( x >= 0 && x < max_windows) {
+				if (start_x == x) {
+						return -1;
+				}
                 if(windows_container[x] != None)
                 {
                         LOG_DEBUG("Found next window at: %d\n", x);
                         return x;
                 }
-                nex_prev ? x++ :  x--;
-         }
+				if (nex_prev) {
+						x++;
+						
+						x = min(x, max_windows) % max_windows;
+				} else {
+						x--;
+						
+						x = (x+max_windows) % max_windows; //(max(x, 0) + max_windows) % max_windows;
+				}
+		}
+		
          return -1;
 }
 
