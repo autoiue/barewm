@@ -41,7 +41,7 @@ Window selected;
 
 void main_loop();
 GC BARE_Colors(char *FG, char *BG);
-void handle_keypress_event(XEvent *e);
+bool handle_keypress_event(XEvent *e);
 void handle_maprequest_event(XEvent *e);
 void handle_configure_event(XEvent *e);
 void handle_destroy_event(XEvent *e);
