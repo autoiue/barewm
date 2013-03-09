@@ -212,6 +212,9 @@ void echo_output(char *cmd)
 void handle_keypress_event(XEvent * e)
 {
 	XEvent event;
+
+	bool canRun = true;
+
 	XGrabKey(display, AnyKey, AnyModifier, root, True, GrabModeAsync, GrabModeAsync);
     XMaskEvent (display, KeyPressMask, &event);
 	XDefineCursor(display, root, (XCreateFontCursor(display, CURSOR)));
@@ -221,10 +224,13 @@ void handle_keypress_event(XEvent * e)
 		XUngrabKey(display, AnyKey, AnyModifier, selected);
 		grab_keyboard();
 		select_window(key - '0');
-		return;
+		return canRun;
 	}
 	switch (key)
-        {       
+        { 
+        case KEY_QUIT:
+        	canRun = false;
+        	break;
 		case KEY_TERMINAL:
 			spawn(TERMINAL);
 			break;
@@ -276,6 +282,7 @@ void handle_keypress_event(XEvent * e)
 	XUngrabKey(display, AnyKey, AnyModifier, root);
 	grab_keyboard();
 	XSetInputFocus (display, selected, RevertToParent, CurrentTime);
+	return canRun;
 }
 
 void message(const char *text, ...)
@@ -533,8 +540,9 @@ int handle_x_error(Display *display, XErrorEvent *e)
 void main_loop(void)
 {
 	XEvent event;
+	bool running = true;
 	XSetErrorHandler(handle_x_error); //Ignore X errors otherwise the WM would crash every other minute. :)
-	while(1){
+	while(running){
        		XNextEvent(display, &event);
        		switch(event.type){
 		case KeyPress:
@@ -546,7 +554,7 @@ void main_loop(void)
 			{       
 				LOG_DEBUG("Switching to command mode.\n");
 				XDefineCursor(display, root, (XCreateFontCursor(display, CMD_CURSOR)));
-				handle_keypress_event(&event);
+				running = handle_keypress_event(&event);
 			}
 			break;
 		case MapRequest:
