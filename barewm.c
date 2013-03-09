@@ -209,7 +209,7 @@ void echo_output(char *cmd)
 	}
 }
 
-void handle_keypress_event(XEvent * e)
+bool handle_keypress_event(XEvent * e)
 {
 	XEvent event;
 
