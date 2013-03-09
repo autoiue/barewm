@@ -16,20 +16,20 @@
 #define KEY_NEXT	'n' // Select next window in list.
 #define KEY_STATUS	's' // Show message containing output from the command defined at STATUS.
 #define TERMINAL	"urxvt" // Terminal.
-#define MENU		"`dmenu_path | dmenu -fn '-xos4-terminus-*-r-*-*-12-*-*-*-*-*-*-*' -nb '#222222' -nf '#FFFFFF' -sf '#ffffff' -sb '#666666'`" // Launcher menu to run.
-#define FONT		"-xos4-terminus-*-*-*-*-12-*-*-*-*-*-*-*" // Font to use.
-#define BORDER		2 // Border size for window lists / input box.
-#define FGCOLOR		"#cfdb6c" // Window list and messaging foreground color.
-#define BGCOLOR		"#222222" // Window list and messaging background color.
-#define SELFGCOLOR	"#222222" // Window list foreground for selected window.
-#define SELBGCOLOR	"#edf69f" // Window list background for selected window.
+#define MENU		"`dmenu_path | dmenu -fn 'default' -nb '#000000' -nf '#FFFFFF' -sf '#ffffff' -sb '#000000'`" // Launcher menu to run.
+#define FONT		"default" // Font to use.
+#define BORDER		0 // Border size for window lists / input box.
+#define FGCOLOR		"#FFFFFF" // Window list and messaging foreground color.
+#define BGCOLOR		"#000000" // Window list and messaging background color.
+#define SELFGCOLOR	"#000000" // Window list foreground for selected window.
+#define SELBGCOLOR	"#FFFFFF" // Window list background for selected window.
 #define PADDING_NORTH	0 // Top screen edge unmanaged pixels.
 #define PADDING_WEST	0 // Left screen edge unmanaged pixels.
 #define PADDING_SOUTH	0 // Bottom screen edge unmanaged pixels.
 #define PADDING_EAST	0 // Right screen edge unmanaged pixels.
 #define WLISTPADDING	5 // Left and right space in window list.
-#define WLISTPOS	1 // 0 = NW, 1 = NE, 2 = SE, 3 = SW, 4 = C
-#define TIMEOUT		2 // Timeout.
+#define WLISTPOS	4 // 0 = NW, 1 = NE, 2 = SE, 3 = SW, 4 = C
+#define TIMEOUT		4 // Timeout.
 #define STATUS		"short-info.sh" // Command whose output is shown when you hit KEY_STATUS.
 
 #endif
