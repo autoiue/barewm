@@ -1,7 +1,7 @@
 #ifndef CONF_H
 #define CONF_H
 
-#define VERSION 	"0.4.10" // Bare WM version.
+#define VERSION 	"0.5" // Bare WM version.
 #define DISPLAY		":0" // Which display to use.
 #define CURSOR		XC_left_ptr // Default cursor, overrides any custom cursors you may have defined outside the WM, i.e. in xinitrc.
 #define MOD_MASK 	133 // Modifier key.
