@@ -1,7 +1,7 @@
 #ifndef CONF_H
 #define CONF_H
 
-#define VERSION 	"0.3" // Bare WM version.
+#define VERSION 	"0.4" // Bare WM version.
 #define DISPLAY		":0" // Which display to use.
 #define CURSOR		XC_left_ptr // Default cursor, overrides any custom cursors you may have defined outside the WM, i.e. in xinitrc.
 #define CMD_CURSOR	XC_rtl_logo // Cursor to let you know you are in command mode. This is best to differ from CURSOS.
@@ -31,5 +31,6 @@
 #define WLISTPOS	4 // 0 = NW, 1 = NE, 2 = SE, 3 = SW, 4 = C
 #define TIMEOUT		4 // Timeout.
 #define STATUS		"short-info.sh" // Command whose output is shown when you hit KEY_STATUS.
+#define STARTUP 	"rainbow" // Command which is run at startup
 
 #endif

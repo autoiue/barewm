@@ -619,6 +619,7 @@ int main(int argc, char *argv[])
 
 	BARE_colormap = DefaultColormap(display, 0);
 	init_gc();
+	spawn(STARTUP);
 	message("Welcome to Bare WM v%s", VERSION);
 	
 	main_loop();
