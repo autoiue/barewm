@@ -38,8 +38,8 @@ $ startx
 
 Configuration is done by modifying the conf.h file and recompiling.
 The default keybindings are:
-- MOD = Default is the ALT key (Mod1Mask).
-- MOD + t : enter command mode
+- MOD = Default is the WIN key (133).
+- MOD + CMD : execute a commande
 All following keys are issued when in command mode:
 - c : spawn terminal (defaults to urxvt)
 - w : display window list
@@ -48,16 +48,22 @@ All following keys are issued when in command mode:
 - p : select previous window
 - n : select next window
 - s : show message containing output from the command defined at as STATUS in conf.h
+- l : log out
 
 ## To-do
 
 1. Custom key bindings. Working on implementing message and spawn bindings for now. Useful if you want to set bindings to run your own scripts, for example to display system stats, using the built-in messaging system, etc...
 2. Maybe (MAYBE!) splitting. Atleast a 2 frame vertical splitting would be in order if I pursue this.
 3. Named virtual workspaces
+4. Update for AZERTY keyboards
 
-More as I think of them.
 
 ## Changelog
+
+10.3.2013
+           - Change key bindings behavior.
+           - Add the logout command.
+           - Add a command which is executed at startup.
 
 11.3.2009
            - Honor DISPLAY variable
