@@ -1,12 +1,10 @@
 #ifndef CONF_H
 #define CONF_H
 
-#define VERSION 	"0.4" // Bare WM version.
+#define VERSION 	"0.4.9" // Bare WM version.
 #define DISPLAY		":0" // Which display to use.
 #define CURSOR		XC_left_ptr // Default cursor, overrides any custom cursors you may have defined outside the WM, i.e. in xinitrc.
-#define CMD_CURSOR	XC_rtl_logo // Cursor to let you know you are in command mode. This is best to differ from CURSOS.
-#define MOD_MASK 	Mod1Mask // Modifier key.
-#define KEY_PREFIX	't' // Key to enter command mode.
+#define MOD_MASK 	133 // Modifier key.
 #define KEY_WINLIST	'w' // Key to show window list.
 #define KEY_TERMINAL 'c' // Key to spawn terminal.
 #define KEY_KILL	'q' // Key to kill selected window.

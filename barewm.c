@@ -186,7 +186,7 @@ int get_window(bool nex_prev)
 
 void grab_keyboard(void)
 {
-	XGrabKey(display, XKeysymToKeycode (display, KEY_PREFIX), MOD_MASK, root, True, GrabModeAsync, GrabModeAsync);
+	XGrabKey(display, MOD_MASK, AnyModifier, root, True, GrabModeAsync, GrabModeAsync);
 }
 
 void echo_output(char *cmd)
@@ -217,7 +217,7 @@ bool handle_keypress_event(XEvent * e)
 
 	XGrabKey(display, AnyKey, AnyModifier, root, True, GrabModeAsync, GrabModeAsync);
     XMaskEvent (display, KeyPressMask, &event);
-	XDefineCursor(display, root, (XCreateFontCursor(display, CURSOR)));
+	//XDefineCursor(display, root, (XCreateFontCursor(display, CURSOR)));
 	unsigned int key = XLookupKeysym((XKeyEvent *) &event, 0);
 	if (key >= '0' && key <= '9')
 	{
@@ -550,10 +550,13 @@ void main_loop(void)
             {
 	            XDestroyWindow(display, MESSAGE);
             }
-			if ((XKeycodeToKeysym(display, event.xkey.keycode, 0) == KEY_PREFIX) && (event.xkey.state & MOD_MASK))
+
+            // message("%d", event.xkey.keycode);
+
+			if (event.xkey.keycode == MOD_MASK)
 			{       
 				LOG_DEBUG("Switching to command mode.\n");
-				XDefineCursor(display, root, (XCreateFontCursor(display, CMD_CURSOR)));
+				//XDefineCursor(display, root, (XCreateFontCursor(display, CMD_CURSOR)));
 				running = handle_keypress_event(&event);
 			}
 			break;
