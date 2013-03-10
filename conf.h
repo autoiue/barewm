@@ -1,7 +1,7 @@
 #ifndef CONF_H
 #define CONF_H
 
-#define VERSION 	"0.4.9" // Bare WM version.
+#define VERSION 	"0.4.10" // Bare WM version.
 #define DISPLAY		":0" // Which display to use.
 #define CURSOR		XC_left_ptr // Default cursor, overrides any custom cursors you may have defined outside the WM, i.e. in xinitrc.
 #define MOD_MASK 	133 // Modifier key.
@@ -14,7 +14,7 @@
 #define KEY_NEXT	'n' // Select next window in list.
 #define KEY_STATUS	's' // Show message containing output from the command defined at STATUS.
 #define TERMINAL	"urxvt" // Terminal.
-#define MENU		"`dmenu_path | dmenu -fn 'default' -nb '#000000' -nf '#FFFFFF' -sf '#ffffff' -sb '#000000'`" // Launcher menu to run.
+#define MENU		"`dmenu_path | dmenu -fn 'default' -nb '#000000' -nf '#FFFFFF' -sf '#000000' -sb '#FFFFFF'`" // Launcher menu to run.
 #define FONT		"default" // Font to use.
 #define BORDER		0 // Border size for window lists / input box.
 #define FGCOLOR		"#FFFFFF" // Window list and messaging foreground color.
