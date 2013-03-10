@@ -237,6 +237,9 @@ bool handle_keypress_event(XEvent * e)
 		case KEY_MENU:
 			spawn(MENU);
 			break;
+		case KEY_SNAP:
+			spawn(SNAPSHOT);
+			break;
 		case KEY_STATUS:
 			echo_output(STATUS);
 			break;

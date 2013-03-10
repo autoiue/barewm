@@ -1,7 +1,7 @@
 #ifndef CONF_H
 #define CONF_H
 
-#define VERSION 	"0.5" // Bare WM version.
+#define VERSION 	"0.5.1" // Bare WM version.
 #define DISPLAY		":0" // Which display to use.
 #define CURSOR		XC_left_ptr // Default cursor, overrides any custom cursors you may have defined outside the WM, i.e. in xinitrc.
 #define MOD_MASK 	133 // Modifier key.
@@ -9,6 +9,7 @@
 #define KEY_TERMINAL 'c' // Key to spawn terminal.
 #define KEY_KILL	'q' // Key to kill selected window.
 #define KEY_QUIT	'l' // Key to logout.
+#define KEY_SNAP	' ' // Key to take a screenshot
 #define KEY_MENU 	'm' // Key to spawn menu.
 #define KEY_PREV	'p' // Select previous window in list.
 #define KEY_NEXT	'n' // Select next window in list.
@@ -30,5 +31,6 @@
 #define TIMEOUT		4 // Timeout.
 #define STATUS		"short-info.sh" // Command whose output is shown when you hit KEY_STATUS.
 #define STARTUP 	"rainbow" // Command which is run at startup
+#define SNAPSHOT	"screenshot.sh" // Command wich take a screenshot
 
 #endif
