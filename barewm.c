@@ -277,7 +277,7 @@ bool handle_keypress_event(XEvent * e)
 			}
 			break;
         default:
-                message("Key \"%c\" is unbound!", (char)key);
+                //message("Key \"%c\" is unbound!", (char)key);
 	}
 	XUngrabKey(display, AnyKey, AnyModifier, root);
 	grab_keyboard();
