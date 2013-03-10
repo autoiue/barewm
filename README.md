@@ -39,7 +39,8 @@ $ startx
 Configuration is done by modifying the conf.h file and recompiling.
 The default keybindings are:
 - MOD = Default is the WIN key (133).
-- MOD + CMD : execute a commande
+- MOD + CMD : execute a commande.
+
 All following keys are issued when in command mode:
 - c : spawn terminal (defaults to urxvt)
 - w : display window list
