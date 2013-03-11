@@ -35,7 +35,7 @@ int     		SCREEN_HEIGHT;
 GC 			    BARE_GC, BARE_SELECTEDFG_GC, BARE_SELECTEDBG_GC;
 Colormap 		BARE_colormap = None;
 XFontStruct  * fontstruct;
-#define max_windows 999 
+#define max_windows 999
 Window windows_container[max_windows];
 Window selected;
 
@@ -69,7 +69,7 @@ void catch_timer(int signal);
 Window MESSAGE = None;
 
 void catch_timer(int signal)
-{   
+{
     LOG_DEBUG("Timer finished, closing window!\n");
 	XDestroyWindow(display, MESSAGE);
     XFlush(display);
@@ -120,14 +120,14 @@ unsigned long name2color(const char *cid)
         XColor tmpcol;
 
         if(XParseColor(display, BARE_colormap, cid, &tmpcol)) {
-                if(XAllocColor(display, BARE_colormap, &tmpcol)) 
+                if(XAllocColor(display, BARE_colormap, &tmpcol))
                         return tmpcol.pixel;
         }
-        
+
         LOG("Cannot allocate \"%s\" color. Defaulting to black!\n", cid);
         return BlackPixel(display, XDefaultScreen(display));
 
-        
+
 }
 
 void init_gc(void)
@@ -150,10 +150,10 @@ int get_window(bool nex_prev)
 {
         int x = get_position(selected);
 		int start_x = x;
-		
+
 		if (nex_prev) {
 				x++;
-				
+
 		  		x = min(x, max_windows) % max_windows;
 		} else {
 				x--;
@@ -172,15 +172,15 @@ int get_window(bool nex_prev)
                 }
 				if (nex_prev) {
 						x++;
-						
+
 						x = min(x, max_windows) % max_windows;
 				} else {
 						x--;
-						
+
 						x = (x+max_windows) % max_windows; //(max(x, 0) + max_windows) % max_windows;
 				}
 		}
-		
+
          return -1;
 }
 
@@ -227,7 +227,7 @@ bool handle_keypress_event(XEvent * e)
 		return canRun;
 	}
 	switch (key)
-        { 
+        {
         case KEY_QUIT:
         	canRun = false;
         	break;
@@ -247,7 +247,7 @@ bool handle_keypress_event(XEvent * e)
 			if(TIMEOUT > 0)
 			{
 				list_windows();
-			}			
+			}
 			break;
 		case KEY_KILL:
 			XDestroyWindow(display, selected);
@@ -296,10 +296,10 @@ void message(const char *text, ...)
 	vsprintf(tmp, text, vl);
 	va_end(vl);
 	tmp[strlen(tmp)] = 0;
-        
+
 	int th = TextHeight(fontstruct);
 	int char_width = TextWidth(fontstruct, " ");
-	int win_width = (strlen(tmp) * char_width) + (WLISTPADDING * 2);		
+	int win_width = (strlen(tmp) * char_width) + (WLISTPADDING * 2);
 	int win_height = th;
 	int win_x, win_y;
 	switch(WLISTPOS)
@@ -330,12 +330,12 @@ void message(const char *text, ...)
 				break;
 		}
 	MESSAGE = XCreateSimpleWindow(display, root, win_x,  win_y, win_width, win_height, BORDER, name2color(FGCOLOR), name2color(BGCOLOR));
-	XSetWindowBorderWidth(display, MESSAGE, BORDER);		
-	XSetWindowBorder(display, MESSAGE, name2color(FGCOLOR));		
+	XSetWindowBorderWidth(display, MESSAGE, BORDER);
+	XSetWindowBorder(display, MESSAGE, name2color(FGCOLOR));
 	XMapRaised(display, MESSAGE);
 	XDrawString(display, MESSAGE, BARE_GC, WLISTPADDING, 0 + th - fontstruct->max_bounds.descent, tmp, strlen(tmp));
     signal(SIGALRM, catch_timer);
-    alarm(TIMEOUT); 
+    alarm(TIMEOUT);
 }
 
 
@@ -364,14 +364,14 @@ void list_windows(void)
 						number++;
 						sprintf(title, "%d - %s", get_position(windows_container[x]), tmp);
 						max_title = strlen(title);
-						title[0] = 0;	
+						title[0] = 0;
 					}
 				}
 			}
 		}
 	if(number > 0)
-	{	
-		int win_width = (max_title * char_width) + (WLISTPADDING * 2);		
+	{
+		int win_width = (max_title * char_width) + (WLISTPADDING * 2);
 		int win_height = number * th;
 		int win_x, win_y;
 		switch(WLISTPOS)
@@ -402,8 +402,8 @@ void list_windows(void)
 				break;
 		}
         MESSAGE = XCreateSimpleWindow(display, root, win_x,  win_y, win_width, win_height, BORDER, name2color(FGCOLOR), name2color(BGCOLOR));
-		XSetWindowBorderWidth(display, MESSAGE, BORDER);		
-		XSetWindowBorder(display, MESSAGE, name2color(SELBGCOLOR));		
+		XSetWindowBorderWidth(display, MESSAGE, BORDER);
+		XSetWindowBorder(display, MESSAGE, name2color(SELBGCOLOR));
 		XMapRaised(display, MESSAGE);
 
 		for (int x = 0; x< max_windows; x++)
@@ -431,7 +431,7 @@ void list_windows(void)
 			}
 		}
         signal(SIGALRM, catch_timer);
-        alarm(3); 
+        alarm(3);
 	} else {
 		message("No windows to list!");
 	}
@@ -515,7 +515,7 @@ void handle_configure_event(XEvent *e)
       e->xconfigurerequest.width = SCREEN_WIDTH;
       e->xconfigurerequest.height = SCREEN_HEIGHT;
       e->xconfigurerequest.window = e->xconfigure.window;
-      e->xconfigurerequest.border_width = 0;      
+      e->xconfigurerequest.border_width = 0;
       e->xconfigurerequest.above = None;
       XSendEvent(display, e->xconfigurerequest.window, False, StructureNotifyMask, (XEvent*)&e->xconfigurerequest);
 }
@@ -557,7 +557,7 @@ void main_loop(void)
             // message("%d", event.xkey.keycode);
 
 			if (event.xkey.keycode == MOD_MASK)
-			{       
+			{
 				LOG_DEBUG("Switching to command mode.\n");
 				//XDefineCursor(display, root, (XCreateFontCursor(display, CMD_CURSOR)));
 				running = handle_keypress_event(&event);
@@ -566,13 +566,13 @@ void main_loop(void)
 		case MapRequest:
 			handle_maprequest_event(&event);
 			break;
-		case DestroyNotify: 
+		case DestroyNotify:
 			handle_destroy_event(&event);
 			break;
-		case ConfigureNotify: 
+		case ConfigureNotify:
 			handle_configure_event(&event);
 			break;
-		case Expose: 
+		case Expose:
 			handle_expose_event(&event);
 			break;
 		case PropertyNotify:
@@ -606,7 +606,7 @@ int main(int argc, char *argv[])
 		LOG("Screen: %d x %d\n", SCREEN_WIDTH, SCREEN_HEIGHT);
 	} else {
 		LOG("BARE: Cannot get screen! Ending session.\n");
-		return -1;	
+		return -1;
 	}
 	selected = root;
 	fontstruct = XLoadQueryFont(display, FONT);
@@ -615,19 +615,19 @@ int main(int argc, char *argv[])
 		fontstruct = XLoadQueryFont(display, "-*-fixed-medium-r-*-*-12-*-*-*-*-*-iso8859-1");
 		if (!fontstruct) {
 			LOG("Couldn't load default fixed font. Something is seriouslly wrong. Ending session.\n");
-			return -1;		
+			return -1;
 		}
 
 	}
 	XDefineCursor(display, selected, (XCreateFontCursor(display, CURSOR)));
-	grab_keyboard();	
-	XSelectInput(display, root, SubstructureNotifyMask | SubstructureRedirectMask | KeyPressMask); 
+	grab_keyboard();
+	XSelectInput(display, root, SubstructureNotifyMask | SubstructureRedirectMask | KeyPressMask);
 
 	BARE_colormap = DefaultColormap(display, 0);
 	init_gc();
 	spawn(STARTUP);
 	message("Welcome to Bare WM v%s", VERSION);
-	
+
 	main_loop();
 
 	XFree(BARE_GC);
